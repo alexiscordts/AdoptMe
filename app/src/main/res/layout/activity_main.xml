@@ -8,12 +8,29 @@
 
     <TextView
         android:id="@+id/tvTitile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="AdoptMe"
+        android:layout_width="320dp"
+        android:layout_height="168dp"
+        android:text="Welcome to AdoptMe!"
+        android:textSize="60sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.312" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="262dp"
+        android:layout_height="91dp"
+        android:layout_marginStart="74dp"
+        android:layout_marginLeft="74dp"
+        android:layout_marginTop="168dp"
+        android:layout_marginEnd="75dp"
+        android:layout_marginRight="75dp"
+        android:text="Start Viewing Pets"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitile" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
