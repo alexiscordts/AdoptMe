@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class Profile extends AppCompatActivity {
 
-    TextView tvProfile;
+    TextView tvProfile, tvName, tvEmail, tvPhone;
     ImageView imgProfile;
 
     @Override
@@ -17,6 +17,10 @@ public class Profile extends AppCompatActivity {
         setContentView(R.layout.profile);
 
         tvProfile = findViewById(R.id.tvProfile);
+        tvName = findViewById(R.id.tvName);
+        tvEmail = findViewById(R.id.tvEmail);
+        tvPhone = findViewById(R.id.tvPhone);
+
         imgProfile = findViewById(R.id.imgProfile);
     }
 }
