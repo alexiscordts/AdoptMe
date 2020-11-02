@@ -18,18 +18,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnStart = findViewById(R.id.btnStart);
         tvTitle = findViewById(R.id.tvTitle);
+        btnStart = findViewById(R.id.btnStart);
 
-        // move to the main swiping screen on button click
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent startSwiping = new Intent(MainActivity.this, SwipeScreen.class);
                 startActivity(startSwiping);
             }
-
         });
-
     }
 }
