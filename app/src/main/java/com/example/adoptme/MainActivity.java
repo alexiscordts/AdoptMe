@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.adoptme.LoginActivities.Login;
+
 public class MainActivity extends AppCompatActivity {
 
     Button btnStart;
@@ -24,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent startSwiping = new Intent(MainActivity.this, SwipeScreen.class);
+                Intent startSwiping = new Intent(MainActivity.this, Login.class);
                 startActivity(startSwiping);
             }
         });
