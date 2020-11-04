@@ -1,14 +1,16 @@
-package com.example.adoptme;
+package com.example.adoptme.LoginActivities;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class Login extends AppCompatActivity {
+import com.example.adoptme.R;
+
+public class SignUp extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login);
-
+        setContentView(R.layout.sign_up);
     }
 }

@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">AdoptMe</string>
+    <string name="firstNameError">Enter a Valid First Name</string>
+    <string name="lastNameError">Enter a Valid Last Name</string>
+    <string name="userNameError">Enter a Valid Username</string>
+    <string name="passwordError">Enter a Valid Password</string>
+    <string name="emailError">Enter a Valid Email</string>
 </resources>
