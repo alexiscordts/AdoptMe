@@ -20,7 +20,7 @@
         app:layout_constraintVertical_bias="0.312" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/swipePageButton"
         android:layout_width="262dp"
         android:layout_height="91dp"
         android:layout_marginStart="74dp"
@@ -31,6 +31,7 @@
         android:text="Start Viewing Pets"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTitile" />
+        app:layout_constraintTop_toBottomOf="@+id/tvTitile"
+       />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
