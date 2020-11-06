@@ -30,4 +30,17 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'com.yuyakaido.android:card-stack-view:2.3.4'
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
+//    implementation 'com.mindorks.android:placeholderview:1.0.3'
+//    annotationProcessor 'com.mindorks.android:placeholderview-compiler:1.0.3'
+//
+//    // RecyclerView dependency is added to override the
+//    // default 25.4.1 RecyclerView dependency used by placeholderview.
+//    // If you are using the support libraries other than 25.x in the project
+//    implementation 'com.android.support:recyclerview-v7:2.x' // example: 27.1.0
+
 }
