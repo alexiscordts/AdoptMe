@@ -6,9 +6,22 @@
     <string name="Username">Enter your username</string>
     <string name="Password">Enter your password</string>
 
+    <string name="FirstName">First Name</string>
+    <string name="LastName">Last Name</string>
+    <string name="ShelterName">Shelter Name</string>
+    <string name="PhoneNumber">Phone Number</string>
+    <string name="Email">Email</string>
+    <string name="Address">Street Address</string>
+
     <string name="firstNameError">Enter a Valid First Name</string>
     <string name="lastNameError">Enter a Valid Last Name</string>
     <string name="userNameError">Enter a Valid Username</string>
     <string name="passwordError">Enter a Valid Password</string>
     <string name="emailError">Enter a Valid Email</string>
+
+    <string-array name="signup_array">
+        <item>Adopter</item>
+        <item>Shelter</item>
+    </string-array>
+
 </resources>

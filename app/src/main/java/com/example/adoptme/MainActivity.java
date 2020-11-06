@@ -8,8 +8,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.adoptme.LoginActivities.Login;
-
 public class MainActivity extends AppCompatActivity {
 
     Button btnStart;

@@ -1,4 +1,4 @@
-package com.example.adoptme.LoginActivities;
+package com.example.adoptme;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -10,9 +10,6 @@ import android.widget.TextView;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
-import com.example.adoptme.MainActivity;
-import com.example.adoptme.R;
-import com.example.adoptme.SwipeScreen;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -22,11 +19,9 @@ import androidx.appcompat.app.AppCompatActivity;
 public class Login extends AppCompatActivity implements View.OnClickListener {
 
     private AwesomeValidation validate;
-    private ProgressDialog pDialog;
     EditText username;
     EditText password;
-    Button btnLogin;
-    TextView tvRegister;
+    Button btnLogin, btnNewAccount;
 
     /**
      * Creates login instance
@@ -40,8 +35,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
-        btnLogin = findViewById(R.id.btnLogin);
-        tvRegister = findViewById(R.id.tvRegister);
 
         // initializing awesomeValidation library for form validation using regex
         validate = new AwesomeValidation(ValidationStyle.BASIC);
@@ -50,17 +43,12 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         // Password regex: at least one lower case, one upper case, and one number - must be at least 8 characters long
         validate.addValidation(this, R.id.password, "^(?=.*[a-z])(?=.*[0-9])(?=.*[A-Z])(?=\\S+$).{4,}$", R.string.passwordError);
 
-        btnLogin.setOnClickListener((View.OnClickListener) this);
+        btnLogin= findViewById(R.id.btnLogin);
+        btnLogin.setOnClickListener(this);
 
-        // Login:
+        btnNewAccount = findViewById(R.id.btnNewAccount);
+        btnNewAccount.setOnClickListener(this);
 
-        tvRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent register = new Intent(Login.this, SignUp.class);
-                Login.this.startActivity(register);
-            }
-        });
     }
 
 
@@ -73,7 +61,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         return validate.validate();
     }
 
-    /** On login click, handles valdidation if info meets requirements
+    /**
+     * On login click, handles valdidation if info meets requirements
      * and then signs the user in
      *
      * @param view
@@ -85,6 +74,10 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 Intent login = new Intent(Login.this, SwipeScreen.class);
                 startActivity(login);
             }
+        }
+        else if (view.getId() == R.id.btnNewAccount) {
+            Intent reg = new Intent(Login.this, SignUp.class);
+            startActivity(reg);
         }
     }
 
