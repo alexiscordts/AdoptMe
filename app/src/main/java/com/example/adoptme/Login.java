@@ -1,19 +1,14 @@
 package com.example.adoptme;
 
 import android.os.Bundle;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class LikedPets extends AppCompatActivity {
-
-    TextView tvLikedPets;
-
+public class Login extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.liked_pets);
+        setContentView(R.layout.login);
 
-        tvLikedPets = findViewById(R.id.tvLikedPets);
     }
 }
