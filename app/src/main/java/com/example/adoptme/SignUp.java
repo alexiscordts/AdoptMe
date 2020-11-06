@@ -81,7 +81,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.btnSignUp) {
-                Intent signup = new Intent(SignUp.this, SwipeScreen.class);
+                Intent signup = new Intent(SignUp.this, SwipePage.class);
                 startActivity(signup);
             }
         }

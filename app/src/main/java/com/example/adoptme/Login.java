@@ -71,7 +71,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     public void onClick(View view) {
         if (view.getId() == R.id.btnLogin) {
             if (validateForm()) {
-                Intent login = new Intent(Login.this, SwipeScreen.class);
+                Intent login = new Intent(Login.this, SwipePage.class);
                 startActivity(login);
             }
         }
