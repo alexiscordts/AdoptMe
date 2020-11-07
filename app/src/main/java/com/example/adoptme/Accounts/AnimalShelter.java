@@ -16,4 +16,8 @@ public class AnimalShelter {
         return animals;
     }
 
+    public void addAnimal(String name, int image, int age, String type){
+        animals.add(new Animal(name, image, age, type));
+    }
+
 }
