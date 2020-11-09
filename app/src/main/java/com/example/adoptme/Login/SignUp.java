@@ -1,4 +1,4 @@
-package com.example.adoptme;
+package com.example.adoptme.Login;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.adoptme.R;
+import com.example.adoptme.SwipePage;
 
 public class SignUp extends AppCompatActivity implements View.OnClickListener {
 
