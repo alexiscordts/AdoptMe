@@ -32,9 +32,9 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         etShelter = findViewById(R.id.etShelter);
         etAddress = findViewById(R.id.etAddress);
         btnSignUp = findViewById(R.id.btnSignUp);
-        btnSignUp.setOnClickListener((View.OnClickListener) this);
+        btnSignUp.setOnClickListener(this);
 
-        spinner = findViewById(R.id.spinner);
+        spinner = findViewById(R.id.signup_spinner);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
 
         /**

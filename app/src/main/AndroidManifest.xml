@@ -19,6 +19,7 @@
         </activity>
         <activity android:name=".LikedPets"/>
         <activity android:name=".Profile"/>
+        <activity android:name=".Settings"/>
         <activity android:name=".Login.Login"/>
         <activity android:name=".Login.SignUp"/>
     </application>
