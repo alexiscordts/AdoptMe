@@ -47,6 +47,10 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.View
         return animals.size();
     }
 
+    public ArrayList<Animal> getAnimals(){
+        return animals;
+    }
+
     public ArrayList<Animal> getfilteredAnimals(ArrayList<Animal> animals){
 
         ArrayList<Animal> filteredAnimals = new ArrayList<>();

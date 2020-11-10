@@ -38,7 +38,7 @@ public class SwipePage extends AppCompatActivity {
 
 
         //for now lets just create a basic user..
-        currentUser = new UserModel("vtorres@iastate.edu", "Veronica", "515-402-7893", R.drawable.goldenretriever);
+        currentUser = new UserModel("vtorres@iastate.edu", "Veronica", "515-402-7893", R.drawable.goldenretriever, new ArrayList<Animal>());
 
         //Test age filtering...
 //        currentUser.changeAgeFilter(3,8);
@@ -59,6 +59,10 @@ public class SwipePage extends AppCompatActivity {
                 }else if(direction == Direction.Right) {
                     //Like a pet
                     Toast.makeText(SwipePage.this, "You liked this pet", Toast.LENGTH_LONG).show();
+
+                    ArrayList<Animal> allAnimals = cardStackAdapter.getAnimals();
+
+                    currentUser.addLikedAnimal(allAnimals.get(cardStackLayoutManager.getTopPosition() -1));
                 }
 
             }
@@ -97,8 +101,9 @@ public class SwipePage extends AppCompatActivity {
         cardStackLayoutManager.setCanScrollHorizontal(true);
         cardStackLayoutManager.setSwipeableMethod(SwipeableMethod.Manual);
         cardStackLayoutManager.setOverlayInterpolator(new LinearInterpolator());
-        cardStackAdapter = new CardStackAdapter(addTempList(), currentUser);
         cardStackView.setLayoutManager(cardStackLayoutManager);
+
+        cardStackAdapter = new CardStackAdapter(addTempList(), currentUser);
         cardStackView.setAdapter(cardStackAdapter);
         cardStackView.setItemAnimator(new DefaultItemAnimator());
 

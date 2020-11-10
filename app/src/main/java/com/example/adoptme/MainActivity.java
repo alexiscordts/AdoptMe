@@ -9,12 +9,20 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button swipePageButton ;
+    private Button swipePageButton, likedPets ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        likedPets = findViewById(R.id.likedPets);
+        likedPets.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                likedClick(view);
+            }
+        });
 
         swipePageButton = findViewById(R.id.swipePageButton);
         swipePageButton.setOnClickListener(new View.OnClickListener() {
@@ -29,6 +37,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void swipeClick(View view){
         Intent intent = new Intent(this, SwipePage.class);
+        startActivity(intent);
+    }
+    private void likedClick(View view){
+        Intent intent = new Intent(this, LikedPets.class);
         startActivity(intent);
     }
 }

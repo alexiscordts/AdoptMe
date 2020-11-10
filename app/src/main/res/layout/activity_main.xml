@@ -34,4 +34,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
 
+    <Button
+        android:id="@+id/likedPets"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Test Liked Pets"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/swipePageButton" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
