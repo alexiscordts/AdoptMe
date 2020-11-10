@@ -19,7 +19,7 @@ public class Settings extends AppCompatActivity implements View.OnClickListener 
 
 
     Spinner animal_spinner;
-    TextView tvPetAge, tvPetType;
+    TextView tvPetAge, tvPetType, seekBarVal;
     SeekBar age_seek_bar;
     Switch switch_all;
     Button btnSave;
@@ -38,8 +38,30 @@ public class Settings extends AppCompatActivity implements View.OnClickListener 
         tvPetType = findViewById(R.id.etLast);
         age_seek_bar = findViewById(R.id.age_seek_bar);
         age_seek_bar.setMax(20);
-        age_seek_bar.setProgress(5); // 50 default progress value
-        int seekBarVal = age_seek_bar.getProgress();
+        age_seek_bar.setProgress(5); // 5 default progress value
+        age_seek_bar.getProgress();
+        seekBarVal = findViewById(R.id.seekBarVal);
+        age_seek_bar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener(){
+
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress,
+                                          boolean fromUser) {
+                // TODO Auto-generated method stub
+                seekBarVal.setText(String.valueOf(progress));
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                // TODO Auto-generated method stub
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                // TODO Auto-generated method stub
+            }
+        });
+
+
         switch_all = findViewById(R.id.switch_all);
 
         btnSave = findViewById(R.id.btnSave);

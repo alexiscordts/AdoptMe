@@ -15,12 +15,15 @@
         android:layout_marginTop="4dp"
         android:layout_marginEnd="241dp"
         android:layout_marginRight="241dp"
+        android:layout_marginBottom="77dp"
         android:text="Settings"
         android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/tvPetAge"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/tvPetAge"
@@ -48,8 +51,10 @@
         android:layout_marginTop="52dp"
         android:layout_marginEnd="241dp"
         android:layout_marginRight="241dp"
+        android:layout_marginBottom="101dp"
         android:text="Pet Type:"
         android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/switch_all"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -61,12 +66,11 @@
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="55dp"
+        android:layout_marginTop="46dp"
         android:layout_marginEnd="153dp"
         android:layout_marginRight="153dp"
-        android:layout_marginBottom="56dp"
-        app:layout_constraintBottom_toTopOf="@+id/switch_all"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/tvPetType"
         app:layout_constraintTop_toBottomOf="@+id/age_seek_bar" />
 
@@ -76,15 +80,14 @@
         android:layout_height="65dp"
         android:layout_marginStart="11dp"
         android:layout_marginLeft="11dp"
-        android:layout_marginTop="57dp"
+        android:layout_marginTop="100dp"
         android:layout_marginEnd="176dp"
         android:layout_marginRight="176dp"
-        android:layout_marginBottom="352dp"
         android:text="Show Me All Pets"
         android:textColor="@android:color/secondary_text_light"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvPetType" />
 
@@ -104,17 +107,30 @@
 
     <Button
         android:id="@+id/btnSave"
-        android:layout_width="371dp"
-        android:layout_height="0dp"
+        android:layout_width="385dp"
+        android:layout_height="52dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="178dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginRight="24dp"
-        android:layout_marginBottom="126dp"
+        android:layout_marginTop="76dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="100dp"
         android:text="Save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/switch_all" />
+
+    <TextView
+        android:id="@+id/seekBarVal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="125dp"
+        android:layout_marginEnd="43dp"
+        android:layout_marginRight="43dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/age_seek_bar"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
