@@ -7,45 +7,31 @@ import java.util.ArrayList;
  */
 public class UserModel {
 
-    private String email, name, phone;
+    private String email, name, phone,type;
     private int profilePic;
-    private ArrayList<String> typeFilters;
-    private ArrayList<Animal> likedAnimals;
-    /**
-     * ageFilter stores the range of ages a user wants, where ageFilter[0] = youngest age wanted, and ageFilter[1] = oldest age wanted.
-     */
-    private int[] ageFilter;
 
-    public UserModel(String email, String name, String phone, int profilePic, ArrayList<Animal> likedAnimals) {
-        typeFilters = new ArrayList<>();
+
+//    private ArrayList<String> typeFilters;
+//    private ArrayList<Animal> likedAnimals;
+//    /**
+//     * ageFilter stores the range of ages a user wants, where ageFilter[0] = youngest age wanted, and ageFilter[1] = oldest age wanted.
+//     */
+//    private int[] ageFilter;
+
+    public UserModel(String email, String name, String phone, int profilePic, String type) {
         this.email = email;
         this.name = name;
         this.phone = phone;
         this.profilePic = profilePic;
-        this.likedAnimals = likedAnimals;
+        this.type = type;
 
-        ageFilter = new int[]{0, 100};
+    }
+    public String getType() {
+        return type;
     }
 
-    /**
-     * Modify the age filter of a user. Assume that youngest <= oldest.
-     * @param youngest the youngest age wanted for a pet
-     * @param oldest the oldest age wanted for a pet
-     */
-    public void changeAgeFilter(int youngest, int oldest){
-        ageFilter[0] = youngest;
-        ageFilter[1] = oldest;
-    }
-
-    public int[] getAgeFilter(){
-        return ageFilter;
-    }
-
-    public void addTypeFilter(String type){
-        typeFilters.add(type);
-    }
-    public ArrayList<String> getTypeFilters(){
-        return typeFilters;
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getEmail() {
@@ -80,11 +66,5 @@ public class UserModel {
         this.profilePic = profilePic;
     }
 
-    public void addLikedAnimal(Animal animal){
-        likedAnimals.add(animal);
-    }
-    public ArrayList<Animal> getLikedAnimals(){
-        return likedAnimals;
-    }
 
 }

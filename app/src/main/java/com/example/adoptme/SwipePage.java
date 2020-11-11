@@ -8,8 +8,8 @@ import android.view.View;
 import android.view.animation.LinearInterpolator;
 import android.widget.Toast;
 
+import com.example.adoptme.Accounts.Adopter;
 import com.example.adoptme.Accounts.Animal;
-import com.example.adoptme.Accounts.UserModel;
 import com.example.adoptme.Adapters.CardStackAdapter;
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager;
 import com.yuyakaido.android.cardstackview.CardStackListener;
@@ -25,7 +25,7 @@ public class SwipePage extends AppCompatActivity {
     private CardStackView cardStackView;
     private CardStackAdapter cardStackAdapter;
     private CardStackLayoutManager  cardStackLayoutManager;
-    private UserModel currentUser;
+    private Adopter currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +38,7 @@ public class SwipePage extends AppCompatActivity {
 
 
         //for now lets just create a basic user..
-        currentUser = new UserModel("vtorres@iastate.edu", "Veronica", "515-402-7893", R.drawable.goldenretriever, new ArrayList<Animal>());
+        currentUser = new Adopter("vtorres@iastate.edu", "Veronica", "515-402-7893", R.drawable.goldenretriever, new ArrayList<Animal>());
 
         //Test age filtering...
 //        currentUser.changeAgeFilter(3,8);

@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.adoptme.Accounts.Adopter;
 import com.example.adoptme.Accounts.Animal;
 import com.example.adoptme.Accounts.UserModel;
 import com.example.adoptme.R;
@@ -22,7 +23,7 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.View
     private int[] ageFilter = new int[2];
     private ArrayList<String> typeFilter;
 
-    public CardStackAdapter(ArrayList<Animal> animals, UserModel currentUser) {
+    public CardStackAdapter(ArrayList<Animal> animals, Adopter currentUser) {
         ageFilter = currentUser.getAgeFilter();
         typeFilter = currentUser.getTypeFilters();
         this.animals = getfilteredAnimals(animals);
