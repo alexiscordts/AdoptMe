@@ -8,7 +8,7 @@ public class AnimalShelter extends UserModel {
     private ArrayList<Animal> animals;
 
     public AnimalShelter(String email, String name, String phone, int profilePic, String address, ArrayList<Animal> animals) {
-        super(email, name, phone, profilePic);
+        super(email, name, phone, profilePic, "shelter");
         this.address = address;
         setType("shelter");
         this.animals = animals;

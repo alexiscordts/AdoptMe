@@ -13,7 +13,7 @@ public class Adopter extends UserModel{
     private int[] ageFilter;
 
     public Adopter(String email, String name, String phone, int profilePic, ArrayList<Animal> likedAnimals) {
-        super(email, name, phone, profilePic);
+        super(email, name, phone, profilePic, "adopter");
         typeFilters = new ArrayList<>();
         this.likedAnimals = likedAnimals;
         ageFilter = new int[]{0, 100};
