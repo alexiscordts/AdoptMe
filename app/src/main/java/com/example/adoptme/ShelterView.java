@@ -39,7 +39,7 @@ public class ShelterView extends AppCompatActivity {
         tvShelterName = findViewById(R.id.tvShelterName);
         tvShelterPhone = findViewById(R.id.tvShelterPhone);
 
-        recyclerView = findViewById(R.id.savedPetsRecyclerView);
+        recyclerView = findViewById(R.id.availablePetView);
         recyclerView.setHasFixedSize(true);
 
         layoutManager = new LinearLayoutManager(this);

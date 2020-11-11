@@ -9,7 +9,7 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button swipePageButton, likedPets ;
+    private Button swipePageButton, likedPets, shelterProfileBtn ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +32,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        shelterProfileBtn = findViewById(R.id.testShelterProfile);
+        shelterProfileBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                shelterClick(view);
+            }
+        });
+
     }
 
 
@@ -41,6 +49,11 @@ public class MainActivity extends AppCompatActivity {
     }
     private void likedClick(View view){
         Intent intent = new Intent(this, LikedPets.class);
+        startActivity(intent);
+    }
+
+    private void shelterClick(View view){
+        Intent intent = new Intent(this, ShelterView.class);
         startActivity(intent);
     }
 }
