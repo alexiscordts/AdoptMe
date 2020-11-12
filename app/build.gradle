@@ -36,6 +36,9 @@ dependencies {
     implementation 'com.yuyakaido.android:card-stack-view:2.3.4'
     implementation 'com.squareup.picasso:picasso:2.71828'
 
+    implementation 'org.florescu.android.rangeseekbar:rangeseekbar-library:0.3.0'
+    implementation 'org.florescu.android.rangeseekbar:rangeseekbar-library:0.3.0'
+
 //    implementation 'com.mindorks.android:placeholderview:1.0.3'
 //    annotationProcessor 'com.mindorks.android:placeholderview-compiler:1.0.3'
 //

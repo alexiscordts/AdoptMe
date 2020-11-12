@@ -13,14 +13,12 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.adoptme.Login.SignUp;
-
 public class Settings extends AppCompatActivity implements View.OnClickListener {
 
 
     Spinner animal_spinner;
-    TextView tvPetAge, tvPetType, seekBarVal;
-    SeekBar age_seek_bar;
+    TextView tvPetAge, tvPetType, seekBarVal1, seekBarVal2;
+    SeekBar age_seek_bar_min, age_seek_bar_max;
     Switch switch_all;
     Button btnSave;
 
@@ -36,18 +34,24 @@ public class Settings extends AppCompatActivity implements View.OnClickListener 
 
         tvPetAge = findViewById(R.id.etFirst);
         tvPetType = findViewById(R.id.etLast);
-        age_seek_bar = findViewById(R.id.age_seek_bar);
-        age_seek_bar.setMax(20);
-        age_seek_bar.setProgress(5); // 5 default progress value
-        age_seek_bar.getProgress();
-        seekBarVal = findViewById(R.id.seekBarVal);
-        age_seek_bar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener(){
+        age_seek_bar_min = findViewById(R.id.age_seek_bar_min);
+        age_seek_bar_max = findViewById(R.id.age_seek_bar_max);
+        age_seek_bar_min.setMax(25);
+        age_seek_bar_max.setMax(25);
+        age_seek_bar_min.setProgress(1); // 5 default progress value
+        age_seek_bar_max.setProgress(1); // 5 default progress value
+        age_seek_bar_min.getProgress();
+        age_seek_bar_max.getProgress();
+        seekBarVal1 = findViewById(R.id.seekBarVal1);
+        seekBarVal2 = findViewById(R.id.seekBarVal2);
+        age_seek_bar_min.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener(){
 
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress,
                                           boolean fromUser) {
                 // TODO Auto-generated method stub
-                seekBarVal.setText(String.valueOf(progress));
+                seekBarVal1.setText(String.valueOf(progress));
+
             }
 
             @Override
@@ -61,8 +65,28 @@ public class Settings extends AppCompatActivity implements View.OnClickListener 
             }
         });
 
+        age_seek_bar_max.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener(){
 
-        switch_all = findViewById(R.id.switch_all);
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress,
+                                          boolean fromUser) {
+                // TODO Auto-generated method stub
+                seekBarVal2.setText(String.valueOf(progress));
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                // TODO Auto-generated method stub
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                // TODO Auto-generated method stub
+            }
+        });
+
+    switch_all = findViewById(R.id.switch_all);
 
         btnSave = findViewById(R.id.btnSave);
         btnSave.setOnClickListener((View.OnClickListener) this);
@@ -104,7 +128,7 @@ public class Settings extends AppCompatActivity implements View.OnClickListener 
         if (view.getId() == R.id.btnSave) {
             Intent save = new Intent(Settings.this, SwipePage.class);
 //            updateSwipePageResults()
-//            need method call here to save the changes and only show specific preferences
+//            need method call here to save the changes and only show specific preferences?
             startActivity(save);
         }
     }
