@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
@@ -21,7 +22,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     private AwesomeValidation validate;
     EditText username;
     EditText password;
-    Button btnLogin, btnNewAccount;
+    Button btnLogin, btnSignUp;
+    ImageView imgDogPic;
 
     /**
      * Creates login instance
@@ -35,6 +37,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
+        imgDogPic = findViewById(R.id.imgDogPic);
 
         // initializing awesomeValidation library for form validation using regex
         validate = new AwesomeValidation(ValidationStyle.BASIC);
@@ -46,8 +49,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         btnLogin= findViewById(R.id.btnLogin);
         btnLogin.setOnClickListener(this);
 
-        btnNewAccount = findViewById(R.id.btnNewAccount);
-        btnNewAccount.setOnClickListener(this);
+        btnSignUp = findViewById(R.id.btnSignUp);
+        btnSignUp.setOnClickListener(this);
 
     }
 
@@ -75,7 +78,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 startActivity(login);
             }
         }
-        else if (view.getId() == R.id.btnNewAccount) {
+        else if (view.getId() == R.id.btnSignUp) {
             Intent reg = new Intent(Login.this, SignUp.class);
             startActivity(reg);
         }

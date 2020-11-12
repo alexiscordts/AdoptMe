@@ -48,7 +48,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
             // if "adopter" selected:
             parent.getItemAtPosition(pos);
-            if (pos == 0){
+            if (pos == 0) {
                 etFirst.setVisibility(View.VISIBLE);
                 etLast.setVisibility(View.VISIBLE);
                 etShelter.setVisibility(View.INVISIBLE);
@@ -59,7 +59,6 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                 etLast.setVisibility(View.INVISIBLE);
                 etShelter.setVisibility(View.VISIBLE);
                 etAddress.setVisibility(View.VISIBLE);
-
             }
         }
 
@@ -84,8 +83,13 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.btnSignUp) {
-                Intent signup = new Intent(SignUp.this, SwipePage.class);
-                startActivity(signup);
-            }
+            // if(spinner value = "adopter"){
+            Intent signup = new Intent(SignUp.this, SwipePage.class);
+            startActivity(signup);
+        }
+        // else if(spinner value = "shelter"){
+            // Intent signun2 = new Intent(SignUp.this, Profile.class);
+            // startActivity(signup2);
+        // }
         }
 }
