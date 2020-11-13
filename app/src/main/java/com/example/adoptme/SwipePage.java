@@ -12,7 +12,9 @@ import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.adoptme.Accounts.Adopter;
 import com.example.adoptme.Accounts.Animal;
+import com.example.adoptme.Adapters.CardStackAdapter;
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager;
 import com.yuyakaido.android.cardstackview.CardStackListener;
 import com.yuyakaido.android.cardstackview.CardStackView;
@@ -28,6 +30,7 @@ public class SwipePage extends AppCompatActivity {
     private CardStackAdapter cardStackAdapter;
     private CardStackLayoutManager  cardStackLayoutManager;
     private Button btnSettings;
+    private Adopter currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +41,16 @@ public class SwipePage extends AppCompatActivity {
 //        btnSettings.setOnClickListener(this);
 
         cardStackView = findViewById(R.id.card_stack_view);
+        //Get the current user if any...
+
+
+        //for now lets just create a basic user..
+        currentUser = new Adopter("vtorres@iastate.edu", "Veronica", "515-402-7893", R.drawable.goldenretriever, new ArrayList<Animal>());
+
+        //Test age filtering...
+//        currentUser.changeAgeFilter(3,8);
+//        currentUser.addTypeFilter("Dog");
+
         cardStackLayoutManager = new CardStackLayoutManager(this, new CardStackListener() {
             @Override
             public void onCardDragging(Direction direction, float ratio) {
@@ -52,6 +65,10 @@ public class SwipePage extends AppCompatActivity {
                 }else if(direction == Direction.Right) {
                     //Like a pet
                     Toast.makeText(SwipePage.this, "You liked this pet", Toast.LENGTH_LONG).show();
+
+                    ArrayList<Animal> allAnimals = cardStackAdapter.getAnimals();
+
+                    currentUser.addLikedAnimal(allAnimals.get(cardStackLayoutManager.getTopPosition() -1));
                 }
 
             }
@@ -90,8 +107,9 @@ public class SwipePage extends AppCompatActivity {
         cardStackLayoutManager.setCanScrollHorizontal(true);
         cardStackLayoutManager.setSwipeableMethod(SwipeableMethod.Manual);
         cardStackLayoutManager.setOverlayInterpolator(new LinearInterpolator());
-        cardStackAdapter = new CardStackAdapter(addTempList());
         cardStackView.setLayoutManager(cardStackLayoutManager);
+
+        cardStackAdapter = new CardStackAdapter(addTempList(), currentUser);
         cardStackView.setAdapter(cardStackAdapter);
         cardStackView.setItemAnimator(new DefaultItemAnimator());
 
@@ -122,10 +140,10 @@ public class SwipePage extends AppCompatActivity {
 
     public ArrayList<Animal> addTempList(){
         ArrayList<Animal> animals = new ArrayList<>();
-        animals.add(new Animal("Steve",R.drawable.kitten, "1", "Cat"));
-        animals.add(new Animal("Eevee",R.drawable.eevee, "8", "Dog"));
-        animals.add(new Animal("Bud",R.drawable.goldenretriever, "4", "Dog"));
-        animals.add(new Animal("Iron",R.drawable.iron, "3", "Dog"));
+        animals.add(new Animal("Steve",R.drawable.kitten, 1, "Cat"));
+        animals.add(new Animal("Eevee",R.drawable.eevee, 8, "Dog"));
+        animals.add(new Animal("Bud",R.drawable.goldenretriever, 4, "Dog"));
+        animals.add(new Animal("Iron",R.drawable.iron, 3, "Dog"));
 
         return animals;
     }
