@@ -3,9 +3,13 @@ package com.example.adoptme;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.adoptme.Accounts.Adopter;
@@ -25,6 +29,7 @@ public class SwipePage extends AppCompatActivity {
     private CardStackView cardStackView;
     private CardStackAdapter cardStackAdapter;
     private CardStackLayoutManager  cardStackLayoutManager;
+    private Button btnSettings;
     private Adopter currentUser;
 
     @Override
@@ -32,8 +37,10 @@ public class SwipePage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_swipe_page);
 
-        cardStackView = findViewById(R.id.card_stack_view);
+        btnSettings = findViewById(R.id.btnSettings);
+//        btnSettings.setOnClickListener(this);
 
+        cardStackView = findViewById(R.id.card_stack_view);
         //Get the current user if any...
 
 
@@ -43,7 +50,6 @@ public class SwipePage extends AppCompatActivity {
         //Test age filtering...
 //        currentUser.changeAgeFilter(3,8);
 //        currentUser.addTypeFilter("Dog");
-
 
         cardStackLayoutManager = new CardStackLayoutManager(this, new CardStackListener() {
             @Override
@@ -110,6 +116,26 @@ public class SwipePage extends AppCompatActivity {
 
     }
 
+    // create an action bar button
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // R.menu.mymenu is a reference to an xml file named mymenu.xml which should be inside your res/menu directory.
+        // If you don't have res/menu, just create a directory named "menu" inside res
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    // handle button activities
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.btnSettings) {
+            Intent settings = new Intent(SwipePage.this, Settings.class);
+            startActivity(settings);
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
 
     public ArrayList<Animal> addTempList(){
@@ -121,4 +147,17 @@ public class SwipePage extends AppCompatActivity {
 
         return animals;
     }
+//
+//    /**
+//     * On settings click, handles redirecting the user to the settings page
+//     *
+//     * @param view
+//     */
+//    @Override
+//    public void onClick(View view) {
+//        if (view.getId() == R.id.btnSettings) {
+//            Intent settings = new Intent(SwipePage.this, Settings.class);
+//            startActivity(settings);
+//        }
+//    }
 }

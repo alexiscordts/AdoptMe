@@ -26,11 +26,14 @@ public class MainActivity extends AppCompatActivity {
 
         swipePageButton = findViewById(R.id.swipePageButton);
         swipePageButton.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
                 swipeClick(view);
+
             }
         });
+
 
         shelterProfileBtn = findViewById(R.id.testShelterProfile);
         shelterProfileBtn.setOnClickListener(new View.OnClickListener() {
@@ -41,8 +44,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-
-
     private void swipeClick(View view){
         Intent intent = new Intent(this, SwipePage.class);
         startActivity(intent);
