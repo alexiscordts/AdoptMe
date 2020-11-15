@@ -11,6 +11,7 @@
     <string name="ShelterName">Shelter Name</string>
     <string name="PhoneNumber">Phone Number</string>
     <string name="Email">Email</string>
+    <string name="Pass">Password</string>
     <string name="Address">Street Address</string>
 
     <string name="firstNameError">Enter a Valid First Name</string>

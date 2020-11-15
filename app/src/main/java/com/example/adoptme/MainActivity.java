@@ -9,25 +9,19 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button swipePageButton ;
+    private Button mLoginButton ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        swipePageButton = findViewById(R.id.swipePageButton);
-        swipePageButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-                swipeClick(view);
-
-            }
-        });
+        mLoginButton = (Button) findViewById(R.id.loginButton);
     }
-    private void swipeClick(View view){
-        Intent intent = new Intent(this, SwipePage.class);
+
+
+    public void loginClick(View view){
+        Intent intent = new Intent(this, FirebaseLogin.class);
         startActivity(intent);
     }
 }
