@@ -27,4 +27,10 @@
         <item>Shelter</item>
     </string-array>
 
+    <string-array name="settings_array">
+        <item>Cat</item>
+        <item>Dog</item>
+        <item>Rabbit</item>
+    </string-array>
+
 </resources>

@@ -6,6 +6,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.adoptme.R;
+
 public class Profile extends AppCompatActivity {
 
     TextView tvProfile, tvName, tvEmail, tvPhone;

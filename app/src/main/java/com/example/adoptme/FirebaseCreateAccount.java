@@ -59,7 +59,7 @@ public class FirebaseCreateAccount extends AppCompatActivity {
                     String uid = auth.getUid();
                     Toast.makeText(FirebaseCreateAccount.this, "User ID: " + uid, Toast.LENGTH_SHORT).show();
                     if(acctType == "adopter"){
-                        Adopter adopter = new Adopter(uid, name, acctType);
+                        Adopter adopter = new Adopter(uid, name, "", null);
 
                     }
                 }

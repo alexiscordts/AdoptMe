@@ -11,6 +11,8 @@
         android:theme="@style/AppTheme">
         <activity android:name=".FirebaseCreateAccount"></activity>
         <activity android:name=".FirebaseLogin" />
+        <activity android:name=".Login.Login"/>
+        <activity android:name=".ShelterView"></activity>
         <activity android:name=".SwipePage" />
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -21,8 +23,8 @@
         </activity>
         <activity android:name=".LikedPets" />
         <activity android:name=".Profile" />
-        <activity android:name=".Login" />
-        <activity android:name=".SignUp" />
+        <activity android:name=".Settings"/>
+        <activity android:name=".Login.SignUp"/>
     </application>
 
 </manifest>

@@ -1,4 +1,4 @@
-package com.example.adoptme;
+package com.example.adoptme.Adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,44 +10,48 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.adoptme.Accounts.Animal;
+import com.example.adoptme.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.ViewHolder> {
+public class SavedPetsAdapter extends RecyclerView.Adapter<SavedPetsAdapter.ViewHolder> {
 
-    private ArrayList<Animal> animals;
+    private ArrayList<Animal> savedAnimals;
 
-    public CardStackAdapter(ArrayList<Animal> animals) {
-        this.animals = animals;
+    public SavedPetsAdapter(ArrayList<Animal> savedAnimals) {
+        this.savedAnimals = savedAnimals;
     }
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.card_item, parent, false);
+    public SavedPetsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
+        View view = layoutInflater.inflate(R.layout.liked_pets_card, parent, false);
+
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.setData(animals.get(position));
+    public void onBindViewHolder(@NonNull SavedPetsAdapter.ViewHolder holder, int position) {
+            holder.setData(savedAnimals.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return animals.size();
+        return savedAnimals.size();
     }
 
 
+    public static class ViewHolder extends RecyclerView.ViewHolder{
 
-    class ViewHolder extends RecyclerView.ViewHolder {
         ImageView petImage;
         TextView name, age;
 
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+
             petImage = itemView.findViewById(R.id.pet_image);
             name = itemView.findViewById(R.id.pet_name);
             age = itemView.findViewById(R.id.pet_age);
@@ -64,5 +68,10 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.View
             name.setText(animal.getName());
             age.setText(animal.getAge() + "");
         }
-    }
+
+        }
+
+
 }
+
+

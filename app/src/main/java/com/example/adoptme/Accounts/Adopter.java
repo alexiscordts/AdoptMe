@@ -2,75 +2,50 @@ package com.example.adoptme.Accounts;
 
 import java.util.ArrayList;
 
-public class Adopter {
+public class Adopter extends UserModel{
 
-    private String uid, name, animalType, animalAge, accountType;
-    private ArrayList<Animal> likedAnimals, dislikedAnimals;
 
-    public Adopter(String uid, String name, String accountType){
-        this.uid = uid;
-        this.name = name;
-        this.accountType = accountType;
+    private ArrayList<String> typeFilters;
+    private ArrayList<Animal> likedAnimals;
+    /**
+     * ageFilter stores the range of ages a user wants, where ageFilter[0] = youngest age wanted, and ageFilter[1] = oldest age wanted.
+     */
+    private int[] ageFilter;
 
-        this.animalType = null;
-        this.animalAge = null;
-        this.likedAnimals = null;
-        this.dislikedAnimals = null;
+    public Adopter(String uid, String name, String phone, ArrayList<Animal> likedAnimals) {
+        super(uid, name, phone, "adopter");
+        typeFilters = new ArrayList<>();
+        this.likedAnimals = new ArrayList<>();
+        ageFilter = new int[]{0, 100};
+        this.setType("adopter");
     }
 
-    public String getUid() {
-        return uid;
+
+    /**
+     * Modify the age filter of a user. Assume that youngest <= oldest.
+     * @param youngest the youngest age wanted for a pet
+     * @param oldest the oldest age wanted for a pet
+     */
+    public void changeAgeFilter(int youngest, int oldest){
+        ageFilter[0] = youngest;
+        ageFilter[1] = oldest;
     }
 
-    public void setUid(String uid) {
-        this.uid = uid;
+    public int[] getAgeFilter(){
+        return ageFilter;
     }
 
-    public String getName() {
-        return name;
+    public void addTypeFilter(String type){
+        typeFilters.add(type);
+    }
+    public ArrayList<String> getTypeFilters(){
+        return typeFilters;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void addLikedAnimal(Animal animal){
+        likedAnimals.add(animal);
     }
-
-    public String getAnimalType() {
-        return animalType;
-    }
-
-    public void setAnimalType(String animalType) {
-        this.animalType = animalType;
-    }
-
-    public String getAnimalAge() {
-        return animalAge;
-    }
-
-    public void setAnimalAge(String animalAge) {
-        this.animalAge = animalAge;
-    }
-
-    public String getAccountType() {
-        return accountType;
-    }
-
-    public void setAccountType(String accountType) {
-        this.accountType = accountType;
-    }
-
-    public ArrayList<Animal> getLikedAnimals() {
+    public ArrayList<Animal> getLikedAnimals(){
         return likedAnimals;
-    }
-
-    public void setLikedAnimals(ArrayList<Animal> likedAnimals) {
-        this.likedAnimals = likedAnimals;
-    }
-
-    public ArrayList<Animal> getDislikedAnimals() {
-        return dislikedAnimals;
-    }
-
-    public void setDislikedAnimals(ArrayList<Animal> dislikedAnimals) {
-        this.dislikedAnimals = dislikedAnimals;
     }
 }

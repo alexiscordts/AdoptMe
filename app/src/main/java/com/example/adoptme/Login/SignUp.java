@@ -1,4 +1,4 @@
-package com.example.adoptme;
+package com.example.adoptme.Login;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.adoptme.R;
+import com.example.adoptme.SwipePage;
 
 public class SignUp extends AppCompatActivity implements View.OnClickListener {
 
@@ -29,9 +32,9 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         etShelter = findViewById(R.id.etShelter);
         etAddress = findViewById(R.id.etAddress);
         btnSignUp = findViewById(R.id.btnSignUp);
-        btnSignUp.setOnClickListener((View.OnClickListener) this);
+        btnSignUp.setOnClickListener(this);
 
-        spinner = findViewById(R.id.spinner);
+        spinner = findViewById(R.id.signup_spinner);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
 
         /**
@@ -45,7 +48,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
             // if "adopter" selected:
             parent.getItemAtPosition(pos);
-            if (pos == 0){
+            if (pos == 0) {
                 etFirst.setVisibility(View.VISIBLE);
                 etLast.setVisibility(View.VISIBLE);
                 etShelter.setVisibility(View.INVISIBLE);
@@ -56,7 +59,6 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                 etLast.setVisibility(View.INVISIBLE);
                 etShelter.setVisibility(View.VISIBLE);
                 etAddress.setVisibility(View.VISIBLE);
-
             }
         }
 
@@ -81,8 +83,13 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.btnSignUp) {
-                Intent signup = new Intent(SignUp.this, SwipePage.class);
-                startActivity(signup);
-            }
+            // if(spinner value = "adopter"){
+            Intent signup = new Intent(SignUp.this, SwipePage.class);
+            startActivity(signup);
+        }
+        // else if(spinner value = "shelter"){
+            // Intent signun2 = new Intent(SignUp.this, Profile.class);
+            // startActivity(signup2);
+        // }
         }
 }
