@@ -12,10 +12,10 @@ public class Adopter extends UserModel{
      */
     private int[] ageFilter;
 
-    public Adopter(String email, String name, String phone, int profilePic, ArrayList<Animal> likedAnimals) {
-        super(email, name, phone, profilePic, "adopter");
+    public Adopter(String uid, String name, String phone, ArrayList<Animal> likedAnimals) {
+        super(uid, name, phone, "adopter");
         typeFilters = new ArrayList<>();
-        this.likedAnimals = likedAnimals;
+        this.likedAnimals = new ArrayList<>();
         ageFilter = new int[]{0, 100};
         this.setType("adopter");
     }
@@ -49,8 +49,4 @@ public class Adopter extends UserModel{
     public ArrayList<Animal> getLikedAnimals(){
         return likedAnimals;
     }
-
-
-
-
 }

@@ -9,52 +9,18 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button swipePageButton, likedPets, shelterProfileBtn ;
+    private Button mLoginButton ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        likedPets = findViewById(R.id.likedPets);
-        likedPets.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View view) {
-                likedClick(view);
-            }
-        });
-
-        swipePageButton = findViewById(R.id.swipePageButton);
-        swipePageButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-                swipeClick(view);
-
-            }
-        });
-
-
-        shelterProfileBtn = findViewById(R.id.testShelterProfile);
-        shelterProfileBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                shelterClick(view);
-            }
-        });
-
-    }
-    private void swipeClick(View view){
-        Intent intent = new Intent(this, SwipePage.class);
-        startActivity(intent);
-    }
-    private void likedClick(View view){
-        Intent intent = new Intent(this, LikedPets.class);
-        startActivity(intent);
+        mLoginButton = (Button) findViewById(R.id.loginButton);
     }
 
-    private void shelterClick(View view){
-        Intent intent = new Intent(this, ShelterView.class);
+
+    public void loginClick(View view){
+        Intent intent = new Intent(this, FirebaseLogin.class);
         startActivity(intent);
     }
 }

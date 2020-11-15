@@ -36,7 +36,7 @@ public class LikedPets extends AppCompatActivity {
 
         //Get current user or if no user create a new one...
 
-        currentUser = new Adopter("vtorres@iastate.edu", "Veronica", "515-402-7893", R.drawable.goldenretriever, addTempLikedList());
+        currentUser = new Adopter("vtorres@iastate.edu", "Veronica", "515-402-7893", addTempLikedList());
 
 
 

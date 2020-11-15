@@ -4,11 +4,12 @@ import java.util.ArrayList;
 
 public class AnimalShelter extends UserModel {
 
-    String address;
+    private String uid, name, phoneNum, address, accountType;
+
     private ArrayList<Animal> animals;
 
-    public AnimalShelter(String email, String name, String phone, int profilePic, String address, ArrayList<Animal> animals) {
-        super(email, name, phone, profilePic, "shelter");
+    public AnimalShelter(String uid, String name, String phone, String address, ArrayList<Animal> animals) {
+        super(uid, name, phone, "shelter");
         this.address = address;
         setType("shelter");
         this.animals = animals;

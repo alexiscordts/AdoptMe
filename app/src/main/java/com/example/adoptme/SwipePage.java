@@ -45,7 +45,7 @@ public class SwipePage extends AppCompatActivity {
 
 
         //for now lets just create a basic user..
-        currentUser = new Adopter("vtorres@iastate.edu", "Veronica", "515-402-7893", R.drawable.goldenretriever, new ArrayList<Animal>());
+        currentUser = new Adopter("vtorres@iastate.edu", "Veronica", "515-402-7893", new ArrayList<Animal>());
 
         //Test age filtering...
 //        currentUser.changeAgeFilter(3,8);

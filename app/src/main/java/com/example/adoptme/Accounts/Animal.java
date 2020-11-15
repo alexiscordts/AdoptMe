@@ -3,7 +3,7 @@ package com.example.adoptme.Accounts;
 public class Animal {
 
     int image, age;
-    String name,type;
+    String name,type, notes;
     AnimalShelter shelter;
 
     public Animal(String name,int image, int age, String type){
@@ -25,6 +25,7 @@ public class Animal {
     public int getAge() {
         return age;
     }
+
     public int getImage(){
         return image;
     }

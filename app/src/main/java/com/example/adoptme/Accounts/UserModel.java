@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 public class UserModel {
 
-    private String email, name, phone,type;
+    private String uid, name, phone,type;
     private int profilePic;
 
 
@@ -18,28 +18,24 @@ public class UserModel {
 //     */
 //    private int[] ageFilter;
 
-    public UserModel(String email, String name, String phone, int profilePic, String type) {
-        this.email = email;
+    public UserModel(String uid, String name, String phone, String type) {
+        this.uid = uid;
         this.name = name;
         this.phone = phone;
-        this.profilePic = profilePic;
         this.type = type;
 
     }
+
+    public String getUid(){return uid;}
+
+    public void setUid(String uid){this.uid = uid;}
+
     public String getType() {
         return type;
     }
 
     public void setType(String type) {
         this.type = type;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getName() {
@@ -57,14 +53,5 @@ public class UserModel {
     public void setPhone(String phone) {
         this.phone = phone;
     }
-
-    public int getProfilePic() {
-        return profilePic;
-    }
-
-    public void setProfilePic(int profilePic) {
-        this.profilePic = profilePic;
-    }
-
 
 }

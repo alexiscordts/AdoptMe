@@ -48,13 +48,12 @@ public class ShelterView extends AppCompatActivity {
 
         //Get current user or if no user create a new one...
 
-        animalShelter = new AnimalShelter("shelter@", "arl", "525",2,"234",addList());
+        animalShelter = new AnimalShelter("shelter@", "arl", "525","", addList());
 
         adapter = new SavedPetsAdapter(animalShelter.getAnimals());
 
         recyclerView.setAdapter(adapter);
 
-        tvShelterEmail.setText(animalShelter.getEmail());
         tvShelterName.setText(animalShelter.getName());
         tvShelterPhone.setText(animalShelter.getPhone());
 

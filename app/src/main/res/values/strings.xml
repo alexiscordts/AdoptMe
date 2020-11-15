@@ -2,15 +2,18 @@
     <string name="app_name">AdoptMe</string>
 
     <string name="SignUp">Sign Up</string>
+    <string name="CreateAccount">Create Account</string>
     <string name="LogIn">Log In</string>
     <string name="Username">Enter your username</string>
     <string name="Password">Enter your password</string>
 
     <string name="FirstName">First Name</string>
     <string name="LastName">Last Name</string>
+    <string name="Name">Name</string>
     <string name="ShelterName">Shelter Name</string>
     <string name="PhoneNumber">Phone Number</string>
     <string name="Email">Email</string>
+    <string name="Pass">Password</string>
     <string name="Address">Street Address</string>
 
     <string name="firstNameError">Enter a Valid First Name</string>

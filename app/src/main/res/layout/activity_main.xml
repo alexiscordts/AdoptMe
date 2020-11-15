@@ -20,7 +20,7 @@
         app:layout_constraintVertical_bias="0.312" />
 
     <Button
-        android:id="@+id/swipePageButton"
+        android:id="@+id/homeLoginButton"
         android:layout_width="197dp"
         android:layout_height="105dp"
         android:layout_marginStart="161dp"
@@ -28,29 +28,11 @@
         android:layout_marginTop="68dp"
         android:layout_marginEnd="162dp"
         android:layout_marginRight="162dp"
-        android:onClick="swipeClick"
-        android:text="Start Viewing Pets"
+        android:onClick="loginClick"
+        android:text="@string/LogIn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
 
-    <Button
-        android:id="@+id/likedPets"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Test Liked Pets"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/swipePageButton" />
 
-    <Button
-        android:id="@+id/testShelterProfile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Test shelter profile"
-        app:layout_constraintBottom_toTopOf="@+id/tvTitle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
