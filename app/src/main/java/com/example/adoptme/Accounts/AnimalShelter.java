@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class AnimalShelter {
 
-    private String name;
+    private String uid, name, phoneNum, address, accountType;
     private ArrayList<Animal> animals;
 
     public AnimalShelter(String name, ArrayList<Animal> animals){

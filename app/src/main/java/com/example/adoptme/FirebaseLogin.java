@@ -58,7 +58,7 @@ public class FirebaseLogin extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(!task.isSuccessful()){
-                    Toast.makeText(FirebaseLogin.this, "Authentication Failed", Toast.LENGTH_SHORT);
+                    Toast.makeText(FirebaseLogin.this, "Authentication Failed", Toast.LENGTH_SHORT).show();
                 }else{
                     Intent intent = new Intent(FirebaseLogin.this, SwipePage.class);
                     startActivity(intent);
@@ -69,5 +69,7 @@ public class FirebaseLogin extends AppCompatActivity {
     }
 
     public void onSignUpButtonClick(View v){
+        Intent intent = new Intent(getApplicationContext(), FirebaseCreateAccount.class);
+        startActivity(intent);
     }
 }

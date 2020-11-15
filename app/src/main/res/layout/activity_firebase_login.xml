@@ -51,8 +51,10 @@
             android:id="@+id/loginSignUp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/SignUp"
+            android:text="@string/CreateAccount"
             android:layout_gravity="center"
-            android:textAlignment="center"/>
+            android:textAlignment="center"
+            android:clickable="true"
+            android:onClick="onSignUpButtonClick"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
