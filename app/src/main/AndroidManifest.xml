@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
       
-        <activity android:name=".Login.Login">
+        <activity android:name=".Login.Login"/>
         <activity android:name=".ShelterView"></activity>
         <activity android:name=".SwipePage" />
         <activity android:name=".MainActivity">
@@ -21,7 +21,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".Settings"/>
-        <activity android:name=".MainActivity"/>
         <activity android:name=".Login.SignUp"/>
         <activity android:name=".LikedPets" />
         <activity android:name=".Profile" />
