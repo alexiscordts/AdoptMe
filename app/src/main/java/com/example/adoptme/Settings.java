@@ -14,6 +14,9 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.adoptme.Accounts.Adopter;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class Settings extends AppCompatActivity implements View.OnClickListener {
 
@@ -24,6 +27,8 @@ public class Settings extends AppCompatActivity implements View.OnClickListener 
     Switch switch_all;
     Button btnSave;
     Adopter adopter;
+    private FirebaseAuth auth;
+    private DatabaseReference mDatabase;
 
     /**
      * Creates settings instance
@@ -47,6 +52,14 @@ public class Settings extends AppCompatActivity implements View.OnClickListener 
         age_seek_bar_max.getProgress();
         seekBarVal1 = findViewById(R.id.seekBarVal1);
         seekBarVal2 = findViewById(R.id.seekBarVal2);
+
+        auth = FirebaseAuth.getInstance();
+        String uid = auth.getUid();
+
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("users").child(uid);
+
+
+
         age_seek_bar_min.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener(){
 
             @Override
@@ -55,7 +68,7 @@ public class Settings extends AppCompatActivity implements View.OnClickListener 
                 // TODO Auto-generated method stub
                 seekBarVal1.setText(String.valueOf(progress));
                 adopter.changeMinAge(progress);
-
+                mDatabase.setValue(adopter);
             }
 
             @Override
@@ -77,6 +90,7 @@ public class Settings extends AppCompatActivity implements View.OnClickListener 
                 // TODO Auto-generated method stub
                 seekBarVal2.setText(String.valueOf(progress));
                 adopter.changeMaxAge(progress);
+                mDatabase.setValue(adopter);
 
             }
 
