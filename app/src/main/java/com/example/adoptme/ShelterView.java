@@ -30,8 +30,12 @@ import com.example.adoptme.Adapters.SavedPetsAdapter;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -49,7 +53,7 @@ public class ShelterView extends AppCompatActivity implements TextWatcher {
     private View dialogView;
     private ArrayList<Animal> mAnimals;
     FloatingActionButton fab;
-    TextView tvShelterName, tvShelterPhone, tvShelterEmail;
+    TextView tvShelterName, tvShelterPhone;
     ImageView addNewAnimalImg;
 
     EditText mNameEdit, mAgeEdit, mTypeEdit;
@@ -60,6 +64,8 @@ public class ShelterView extends AppCompatActivity implements TextWatcher {
     //Firebase storage
     private FirebaseStorage firebaseStorage;
     private StorageReference storageReference;
+    private FirebaseAuth auth;
+    private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +75,7 @@ public class ShelterView extends AppCompatActivity implements TextWatcher {
         firebaseStorage = FirebaseStorage.getInstance();
         storageReference = firebaseStorage.getReference();
 
-        tvShelterEmail = findViewById(R.id.tvShelterEmail);
+//        tvShelterEmail = findViewById(R.id.tvShelterEmail);
         tvShelterName = findViewById(R.id.tvShelterName);
         tvShelterPhone = findViewById(R.id.tvShelterPhone);
 
@@ -83,16 +89,35 @@ public class ShelterView extends AppCompatActivity implements TextWatcher {
         //Get current user or if no user create a new one...
         //TODO : Get animal array from database
 
+        auth = FirebaseAuth.getInstance();
+        String uid = auth.getUid();
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("users").child(uid);
+        ValueEventListener valueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                animalShelter = dataSnapshot.getValue(AnimalShelter.class);
+                Toast.makeText(ShelterView.this, "Welcome: " + animalShelter.getName(), Toast.LENGTH_SHORT).show();
 
-        animalShelter = new AnimalShelter("arl", "525","", addList());
-        mAnimals = animalShelter.getAnimals();
+
+                tvShelterName.setText(animalShelter.getName());
+                tvShelterPhone.setText(animalShelter.getPhone());
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        };
+
+        mDatabase.addListenerForSingleValueEvent(valueEventListener);
+
+        mAnimals = retrieveAnimals();
 
         adapter = new SavedPetsAdapter(mAnimals);
 
         recyclerView.setAdapter(adapter);
 
-        tvShelterName.setText(animalShelter.getName());
-        tvShelterPhone.setText(animalShelter.getPhone());
+
 
         fab = findViewById(R.id.floatingActionButton);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -150,21 +175,11 @@ public class ShelterView extends AppCompatActivity implements TextWatcher {
 
         final AlertDialog dialog = builder.show();
 
-
-//        if (editing) {
-//           Animal editAnimal = mAnimals.get(addAnimalPosition);
-//            mNameEdit.setText(editAnimal.getName());
-//            mNameEdit.setEnabled(false);
-//            mAgeEdit.setText(editAnimal.getAge());
-//            mAgeEdit.setEnabled(false);
-//            mTypeEdit.setText(editAnimal.getType());
-//        }
-
         dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(mEntryValid){
-                    Animal newAnimal = new Animal(mNameEdit.getText().toString(),12 , Integer.parseInt(mAgeEdit.getText().toString()), mTypeEdit.getText().toString().toLowerCase());
+                    Animal newAnimal = new Animal(mNameEdit.getText().toString(),R.drawable.doglogin , Integer.parseInt(mAgeEdit.getText().toString()), mTypeEdit.getText().toString().toLowerCase());
 
                     mAnimals.add(newAnimal);
                     adapter.notifyDataSetChanged();
@@ -191,13 +206,6 @@ public class ShelterView extends AppCompatActivity implements TextWatcher {
 
     }
 
-    public ArrayList<Animal> addList(){
-        ArrayList<Animal> animals = new ArrayList<>();
-//        animals.add(new Animal("Eevee",R.drawable.eevee, 8, "Dog"));
-//        animals.add(new Animal("Iron",R.drawable.iron, 3, "Dog"));
-
-        return animals;
-    }
 
 
     @Override
@@ -228,41 +236,42 @@ public class ShelterView extends AppCompatActivity implements TextWatcher {
             Bitmap imageBitmap = (Bitmap) extras.get("data");
             ((ImageView) dialogView.findViewById(R.id.addAnimalImage)).setImageBitmap(imageBitmap);
 
-            imageUri = data.getData();
-            uploadPicture();
-
-
-
+//            imageUri = data.getData();
+//            uploadPicture();
 
         }
     }
 
-    private void uploadPicture() {
-
-        final String randomKey = UUID.randomUUID().toString();
-
-        StorageReference riversRef = storageReference.child("images/" + randomKey);
-
-        riversRef.putFile(imageUri)
-                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        // Get a URL to the uploaded content
-                        Toast.makeText(ShelterView.this, "Added to storage", Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception exception) {
-                        // Handle unsuccessful uploads
-                        // ...
-                    }
-                });
-    }
+//    private void uploadPicture() {
+//
+//        final String randomKey = UUID.randomUUID().toString();
+//
+//        StorageReference riversRef = storageReference.child("images/" + randomKey);
+//
+//        riversRef.putFile(imageUri)
+//                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+//                    @Override
+//                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+//                        // Get a URL to the uploaded content
+//                        Toast.makeText(ShelterView.this, "Added to storage", Toast.LENGTH_SHORT).show();
+//                    }
+//                })
+//                .addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception exception) {
+//                        // Handle unsuccessful uploads
+//                        // ...
+//                    }
+//                });
+//    }
 
     public ArrayList<Animal> retrieveAnimals(){
         ArrayList<Animal> animals = new ArrayList<>();
 
+        animals.add(new Animal("Steve", R.drawable.kitten, 1, "Cat"));
+        animals.add(new Animal("Eevee", R.drawable.eevee, 8, "Dog"));
+        animals.add(new Animal("Bud", R.drawable.goldenretriever, 4, "Dog"));
+        animals.add(new Animal("Iron", R.drawable.iron, 3, "Dog"));
 
 
 

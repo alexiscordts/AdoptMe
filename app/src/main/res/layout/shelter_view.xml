@@ -58,7 +58,6 @@
             android:id="@+id/tvShelterEmail"
             android:layout_width="160dp"
             android:layout_height="35dp"
-
             android:layout_marginTop="112dp"
             android:text="Email"
             android:textSize="24sp"
