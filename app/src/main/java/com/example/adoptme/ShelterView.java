@@ -69,7 +69,7 @@ public class ShelterView extends AppCompatActivity implements TextWatcher {
         //TODO : Get animal array from database
 
 
-        animalShelter = new AnimalShelter("shelter@", "arl", "525","", addList());
+        animalShelter = new AnimalShelter("arl", "525","", addList());
         mAnimals = animalShelter.getAnimals();
 
         adapter = new SavedPetsAdapter(mAnimals);

@@ -21,12 +21,12 @@ import java.util.ArrayList;
 public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.ViewHolder> {
 
     private ArrayList<Animal> animals;
-    private ArrayList<Integer> ageFilter = new ArrayList<>();
+    private ArrayList<Integer> ageFilter;
     private ArrayList<String> typeFilter;
 
     public CardStackAdapter(ArrayList<Animal> animals, Adopter currentUser) {
-        ageFilter = currentUser.getAgeFilter();
-        typeFilter = currentUser.getTypeFilters();
+        this.ageFilter = currentUser.getAgeFilter();
+        this.typeFilter = currentUser.getTypeFilters();
         this.animals = getfilteredAnimals(animals);
 
     }
@@ -57,10 +57,10 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.View
 
         ArrayList<Animal> filteredAnimals = new ArrayList<>();
 
-        if(typeFilter.size() == 0){
+        if(typeFilter == null || typeFilter.size() == 0){
             //There is no type filter, but there is always an age filter.
-            int startAge = ageFilter.indexOf(0);
-            int endAge = ageFilter.indexOf(1);
+            int startAge = ageFilter.get(0);
+            int endAge = ageFilter.get(1);
 
             for(int i=0; i< animals.size(); i++) {
                 Animal currentAnimal = animals.get(i);
