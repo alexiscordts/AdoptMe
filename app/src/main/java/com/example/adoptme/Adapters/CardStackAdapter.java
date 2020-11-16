@@ -15,12 +15,13 @@ import com.example.adoptme.Accounts.UserModel;
 import com.example.adoptme.R;
 import com.squareup.picasso.Picasso;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.ViewHolder> {
 
     private ArrayList<Animal> animals;
-    private int[] ageFilter = new int[2];
+    private ArrayList<Integer> ageFilter = new ArrayList<>();
     private ArrayList<String> typeFilter;
 
     public CardStackAdapter(ArrayList<Animal> animals, Adopter currentUser) {
@@ -84,8 +85,8 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.View
 
         if(typeFilter.size() == 0){
             //There is no type filter, but there is always an age filter.
-            int startAge = ageFilter[0];
-            int endAge = ageFilter[1];
+            int startAge = ageFilter.indexOf(0);
+            int endAge = ageFilter.indexOf(1);
 
             for(int i=0; i< animals.size(); i++) {
                 Animal currentAnimal = animals.get(i);
@@ -100,8 +101,8 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.View
            //we have a type filter and age filter
 
             //age and type filter
-            int startAge = ageFilter[0];
-            int endAge = ageFilter[1];
+            int startAge = ageFilter.indexOf(0);
+            int endAge = ageFilter.indexOf(1);
 
             for(int i =0; i < typeFilter.size(); i++){
 

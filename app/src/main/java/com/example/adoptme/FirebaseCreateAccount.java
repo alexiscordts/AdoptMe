@@ -3,6 +3,7 @@ package com.example.adoptme;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -11,15 +12,23 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.adoptme.Accounts.Adopter;
+import com.example.adoptme.Accounts.Animal;
+import com.example.adoptme.Accounts.AnimalShelter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
 
 public class FirebaseCreateAccount extends AppCompatActivity {
 
     private EditText mName, mEmail, mPassword, mAcctType;
     private FirebaseAuth auth;
+    private DatabaseReference mDatabase;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +41,7 @@ public class FirebaseCreateAccount extends AppCompatActivity {
         mAcctType = findViewById(R.id.createAccountInputAcctType);
 
         auth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
     }
 
     public void onClickCreateAccount(View v){
@@ -57,11 +67,18 @@ public class FirebaseCreateAccount extends AppCompatActivity {
                     Toast.makeText(FirebaseCreateAccount.this, "Authentication Failed: " + task.getException(), Toast.LENGTH_SHORT);
                 }else{
                     String uid = auth.getUid();
-                    Toast.makeText(FirebaseCreateAccount.this, "User ID: " + uid, Toast.LENGTH_SHORT).show();
-                    if(acctType == "adopter"){
+                    if(acctType.equalsIgnoreCase("adopter")){
                         Adopter adopter = new Adopter(uid, name, "", null);
+                        mDatabase.child("users").child(uid).setValue(adopter);
 
+                        startActivity(new Intent(FirebaseCreateAccount.this, SwipePage.class));
+                    }else{
+                        AnimalShelter shelter = new AnimalShelter(uid, name, "", null, new ArrayList<Animal>());
+                        mDatabase.child("users").child(uid).setValue(shelter);
+
+                        startActivity(new Intent(FirebaseCreateAccount.this, ShelterView.class));
                     }
+                    finish();
                 }
             }
         });
