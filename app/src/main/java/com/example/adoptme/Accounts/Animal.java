@@ -1,15 +1,20 @@
 package com.example.adoptme.Accounts;
 
+import android.view.animation.AnimationUtils;
+
 public class Animal {
-    public Animal() {
+
+
+
+    private int image, age;
+    private String name,type;
+
+    public Animal(){
+
     }
 
-    int  age;
-    String name,type, notes, img;
-    AnimalShelter shelter;
-
-    public Animal(String name,String image, int age, String type){
-        this.img = image;
+    public Animal(String name,int image, int age, String type){
+        this.image = image;
         this.name = name;
         this.age= age;
         this.type = type;
@@ -28,7 +33,23 @@ public class Animal {
         return age;
     }
 
-    public String getImage(){
-        return img;
+    public int getImage(){
+        return image;
+    }
+
+    public void setImage(int image) {
+        this.image = image;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

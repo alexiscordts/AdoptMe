@@ -7,28 +7,19 @@ import java.util.ArrayList;
  */
 public class UserModel {
 
-    private String uid, name, phone,type;
+    private String name, phone,type;
     private int profilePic;
 
+    public UserModel(){
 
-//    private ArrayList<String> typeFilters;
-//    private ArrayList<Animal> likedAnimals;
-//    /**
-//     * ageFilter stores the range of ages a user wants, where ageFilter[0] = youngest age wanted, and ageFilter[1] = oldest age wanted.
-//     */
-//    private int[] ageFilter;
+    }
 
-    public UserModel(String uid, String name, String phone, String type) {
-        this.uid = uid;
+    public UserModel(String name, String phone, String type) {
         this.name = name;
         this.phone = phone;
         this.type = type;
 
     }
-
-    public String getUid(){return uid;}
-
-    public void setUid(String uid){this.uid = uid;}
 
     public String getType() {
         return type;

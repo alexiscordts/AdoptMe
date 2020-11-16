@@ -61,11 +61,11 @@ public class SavedPetsAdapter extends RecyclerView.Adapter<SavedPetsAdapter.View
 
 
 
-//            Picasso.get()
-//                    .load(animal.getImage())
-//                    .fit()
-//                    .centerCrop()
-//                    .into(petImage);
+            Picasso.get()
+                    .load(animal.getImage())
+                    .fit()
+                    .centerCrop()
+                    .into(petImage);
 
             name.setText(animal.getName());
             age.setText(animal.getAge() + "");

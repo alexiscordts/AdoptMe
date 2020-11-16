@@ -69,12 +69,12 @@ public class FirebaseCreateAccount extends AppCompatActivity {
                 }else{
                     String uid = auth.getUid();
                     if(acctType.equalsIgnoreCase("adopter")){
-                        Adopter adopter = new Adopter(uid, name, "", addTempLikedList());
+                        Adopter adopter = new Adopter(name, "", new ArrayList<Animal>());
                         mDatabase.child("users").child(uid).setValue(adopter);
 
                         startActivity(new Intent(FirebaseCreateAccount.this, SwipePage.class));
                     }else{
-                        AnimalShelter shelter = new AnimalShelter(uid, name, "", null, new ArrayList<Animal>());
+                        AnimalShelter shelter = new AnimalShelter(name, "", null, new ArrayList<Animal>());
                         mDatabase.child("users").child(uid).setValue(shelter);
 
                         startActivity(new Intent(FirebaseCreateAccount.this, ShelterView.class));

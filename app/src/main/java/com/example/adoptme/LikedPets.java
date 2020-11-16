@@ -19,6 +19,7 @@ import com.example.adoptme.Accounts.UserModel;
 import com.example.adoptme.Adapters.SavedPetsAdapter;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -45,10 +46,15 @@ public class LikedPets extends AppCompatActivity {
 
     private FirebaseRecyclerAdapter<Animal, SavedPetsAdapter.ViewHolder> firebaseRecyclerAdapter;
 
+    private FirebaseAuth auth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_liked_pets);
+
+        auth = FirebaseAuth.getInstance();
+        String uid = auth.getUid();
 
         mStorageRef = FirebaseStorage.getInstance().getReference();
 
@@ -62,15 +68,13 @@ public class LikedPets extends AppCompatActivity {
 
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
-        Query query = databaseReference.child("animals");
+        Query query = databaseReference.child("users").child(uid).child("likedAnimals");
 
         FirebaseRecyclerOptions<Animal> firebaseRecyclerOptions = new FirebaseRecyclerOptions.Builder<Animal>()
                 .setQuery(query, Animal.class)
                 .build();
 
         //Get current user or if no user create a new one...
-
-//        currentUser = new Adopter("vtorres@iastate.edu", "Veronica", "515-402-7893", likedAnimals);
 
 
         firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Animal, SavedPetsAdapter.ViewHolder>(firebaseRecyclerOptions) {
@@ -86,14 +90,6 @@ public class LikedPets extends AppCompatActivity {
                 return new SavedPetsAdapter.ViewHolder(view);
             }
         };
-
-
-//            adapter = new SavedPetsAdapter((ArrayList<Animal>) currentUser.getLikedAnimals());
-
-
-
-
-
 
 
 

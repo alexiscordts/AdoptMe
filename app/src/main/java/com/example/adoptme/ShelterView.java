@@ -84,7 +84,7 @@ public class ShelterView extends AppCompatActivity implements TextWatcher {
         //TODO : Get animal array from database
 
 
-        animalShelter = new AnimalShelter("shelter@", "arl", "525","", addList());
+        animalShelter = new AnimalShelter("arl", "525","", addList());
         mAnimals = animalShelter.getAnimals();
 
         adapter = new SavedPetsAdapter(mAnimals);
@@ -164,7 +164,7 @@ public class ShelterView extends AppCompatActivity implements TextWatcher {
             @Override
             public void onClick(View view) {
                 if(mEntryValid){
-                    Animal newAnimal = new Animal(mNameEdit.getText().toString(), "", Integer.parseInt(mAgeEdit.getText().toString()), mTypeEdit.getText().toString().toLowerCase());
+                    Animal newAnimal = new Animal(mNameEdit.getText().toString(),12 , Integer.parseInt(mAgeEdit.getText().toString()), mTypeEdit.getText().toString().toLowerCase());
 
                     mAnimals.add(newAnimal);
                     adapter.notifyDataSetChanged();
