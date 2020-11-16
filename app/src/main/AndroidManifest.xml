@@ -29,4 +29,7 @@
 
     </application>
 
+    <uses-permission android:name="android.hardware.camera"
+        android:required="true" />
+
 </manifest>

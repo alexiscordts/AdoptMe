@@ -55,6 +55,7 @@ public class FirebaseCreateAccount extends AppCompatActivity {
                 Toast.makeText(FirebaseCreateAccount.this, "createUserWithEmail:onComplete:" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
                 if(!task.isSuccessful()){
                     Toast.makeText(FirebaseCreateAccount.this, "Authentication Failed: " + task.getException(), Toast.LENGTH_SHORT);
+                    System.out.println("Task Failed: " + task.getException());
                 }else{
                     String uid = auth.getUid();
                     Toast.makeText(FirebaseCreateAccount.this, "User ID: " + uid, Toast.LENGTH_SHORT).show();
