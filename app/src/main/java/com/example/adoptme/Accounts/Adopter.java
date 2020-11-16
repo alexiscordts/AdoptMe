@@ -52,4 +52,11 @@ public class Adopter extends UserModel{
     public ArrayList<Animal> getLikedAnimals(){
         return likedAnimals;
     }
+
+    public void changeMinAge(int progress) {
+        ageFilter.set(0,progress);
+    }
+    public void changeMaxAge(int progress) {
+        ageFilter.set(1,progress);
+    }
 }
