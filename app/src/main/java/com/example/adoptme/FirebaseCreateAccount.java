@@ -68,7 +68,7 @@ public class FirebaseCreateAccount extends AppCompatActivity {
                 }else{
                     String uid = auth.getUid();
                     if(acctType.equalsIgnoreCase("adopter")){
-                        Adopter adopter = new Adopter(uid, name, "", null);
+                        Adopter adopter = new Adopter(uid, name, "", addTempLikedList());
                         mDatabase.child("users").child(uid).setValue(adopter);
 
                         startActivity(new Intent(FirebaseCreateAccount.this, SwipePage.class));
@@ -83,4 +83,13 @@ public class FirebaseCreateAccount extends AppCompatActivity {
             }
         });
     }
+
+    public ArrayList<Animal> addTempLikedList(){
+        ArrayList<Animal> animals = new ArrayList<>();
+        animals.add(new Animal("Eevee",R.drawable.eevee, 8, "Dog"));
+        animals.add(new Animal("Iron",R.drawable.iron, 3, "Dog"));
+
+        return animals;
+    }
+
 }
