@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/btnSettings"
+        android:title="Edit Pet Preferences"
+       />
+    <item
+        android:id="@+id/viewAdopterProfile"
+        android:title="View Profile" />
+    <item
+        android:id="@+id/viewLikedPets"
+        android:title="View Matched Pets"/>
+</menu>

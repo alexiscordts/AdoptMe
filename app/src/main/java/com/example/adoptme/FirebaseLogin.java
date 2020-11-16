@@ -23,6 +23,7 @@ public class FirebaseLogin extends AppCompatActivity {
     private TextView mSignUp;
     private FirebaseAuth auth;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,7 +31,7 @@ public class FirebaseLogin extends AppCompatActivity {
         // Get current app user
         auth = FirebaseAuth.getInstance();
         if(auth.getCurrentUser() != null){
-            startActivity(new Intent(FirebaseLogin.this, SwipePage.class));
+            startActivity(new Intent(FirebaseLogin.this, ShelterView.class));
         }
 
         setContentView(R.layout.activity_firebase_login);
@@ -60,7 +61,8 @@ public class FirebaseLogin extends AppCompatActivity {
                 if(!task.isSuccessful()){
                     Toast.makeText(FirebaseLogin.this, "Authentication Failed", Toast.LENGTH_SHORT).show();
                 }else{
-                    Intent intent = new Intent(FirebaseLogin.this, SwipePage.class);
+//                    Intent intent = new Intent(FirebaseLogin.this, SwipePage.class);
+                    Intent intent = new Intent(FirebaseLogin.this, ShelterView.class);
                     startActivity(intent);
                     finish();
                 }

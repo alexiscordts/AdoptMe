@@ -13,6 +13,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.adoptme.Accounts.Adopter;
+
 public class Settings extends AppCompatActivity implements View.OnClickListener {
 
 
@@ -21,6 +23,7 @@ public class Settings extends AppCompatActivity implements View.OnClickListener 
     SeekBar age_seek_bar_min, age_seek_bar_max;
     Switch switch_all;
     Button btnSave;
+    Adopter adopter;
 
     /**
      * Creates settings instance
@@ -51,6 +54,7 @@ public class Settings extends AppCompatActivity implements View.OnClickListener 
                                           boolean fromUser) {
                 // TODO Auto-generated method stub
                 seekBarVal1.setText(String.valueOf(progress));
+                adopter.changeMinAge(progress);
 
             }
 
@@ -72,6 +76,7 @@ public class Settings extends AppCompatActivity implements View.OnClickListener 
                                           boolean fromUser) {
                 // TODO Auto-generated method stub
                 seekBarVal2.setText(String.valueOf(progress));
+                adopter.changeMaxAge(progress);
 
             }
 
