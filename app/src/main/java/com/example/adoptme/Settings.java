@@ -55,7 +55,6 @@ public class Settings extends AppCompatActivity implements View.OnClickListener 
                 // TODO Auto-generated method stub
                 seekBarVal1.setText(String.valueOf(progress));
                 adopter.changeMinAge(progress);
-
             }
 
             @Override

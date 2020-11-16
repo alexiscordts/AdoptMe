@@ -1,5 +1,6 @@
 package com.example.adoptme;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -7,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.Editable;
@@ -19,16 +21,24 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.example.adoptme.Accounts.Adopter;
 import com.example.adoptme.Accounts.Animal;
 import com.example.adoptme.Accounts.AnimalShelter;
 import com.example.adoptme.Adapters.SavedPetsAdapter;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class ShelterView extends AppCompatActivity implements TextWatcher {
     private static final int REQUEST_IMAGE_CAPTURE = 1;
@@ -45,14 +55,19 @@ public class ShelterView extends AppCompatActivity implements TextWatcher {
     EditText mNameEdit, mAgeEdit, mTypeEdit;
     private boolean mEntryValid;
 
-    private DatabaseReference mDatabase;
+    private Uri imageUri;
+
+    //Firebase storage
+    private FirebaseStorage firebaseStorage;
+    private StorageReference storageReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shelter_view);
 
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+        firebaseStorage = FirebaseStorage.getInstance();
+        storageReference = firebaseStorage.getReference();
 
         tvShelterEmail = findViewById(R.id.tvShelterEmail);
         tvShelterName = findViewById(R.id.tvShelterName);
@@ -149,10 +164,12 @@ public class ShelterView extends AppCompatActivity implements TextWatcher {
             @Override
             public void onClick(View view) {
                 if(mEntryValid){
-                    Animal newAnimal = new Animal(mNameEdit.getText().toString(), 12, Integer.parseInt(mAgeEdit.getText().toString()), mTypeEdit.getText().toString().toLowerCase());
+                    Animal newAnimal = new Animal(mNameEdit.getText().toString(), "", Integer.parseInt(mAgeEdit.getText().toString()), mTypeEdit.getText().toString().toLowerCase());
 
                     mAnimals.add(newAnimal);
                     adapter.notifyDataSetChanged();
+
+
 
                     //TODO : Push new animal Data to Firebase
 
@@ -176,8 +193,8 @@ public class ShelterView extends AppCompatActivity implements TextWatcher {
 
     public ArrayList<Animal> addList(){
         ArrayList<Animal> animals = new ArrayList<>();
-        animals.add(new Animal("Eevee",R.drawable.eevee, 8, "Dog"));
-        animals.add(new Animal("Iron",R.drawable.iron, 3, "Dog"));
+//        animals.add(new Animal("Eevee",R.drawable.eevee, 8, "Dog"));
+//        animals.add(new Animal("Iron",R.drawable.iron, 3, "Dog"));
 
         return animals;
     }
@@ -211,9 +228,36 @@ public class ShelterView extends AppCompatActivity implements TextWatcher {
             Bitmap imageBitmap = (Bitmap) extras.get("data");
             ((ImageView) dialogView.findViewById(R.id.addAnimalImage)).setImageBitmap(imageBitmap);
 
+            imageUri = data.getData();
+            uploadPicture();
+
+
 
 
         }
+    }
+
+    private void uploadPicture() {
+
+        final String randomKey = UUID.randomUUID().toString();
+
+        StorageReference riversRef = storageReference.child("images/" + randomKey);
+
+        riversRef.putFile(imageUri)
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        // Get a URL to the uploaded content
+                        Toast.makeText(ShelterView.this, "Added to storage", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception exception) {
+                        // Handle unsuccessful uploads
+                        // ...
+                    }
+                });
     }
 
     public ArrayList<Animal> retrieveAnimals(){

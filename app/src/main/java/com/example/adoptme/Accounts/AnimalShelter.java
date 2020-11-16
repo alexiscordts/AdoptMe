@@ -19,7 +19,7 @@ public class AnimalShelter extends UserModel {
         return animals;
     }
 
-    public void addAnimal(String name, int image, int age, String type){
+    public void addAnimal(String name, String image, int age, String type){
         animals.add(new Animal(name, image, age, type));
     }
 

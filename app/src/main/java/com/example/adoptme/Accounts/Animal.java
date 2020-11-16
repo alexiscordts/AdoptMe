@@ -1,13 +1,15 @@
 package com.example.adoptme.Accounts;
 
 public class Animal {
+    public Animal() {
+    }
 
-    int image, age;
-    String name,type, notes;
+    int  age;
+    String name,type, notes, img;
     AnimalShelter shelter;
 
-    public Animal(String name,int image, int age, String type){
-        this.image = image;
+    public Animal(String name,String image, int age, String type){
+        this.img = image;
         this.name = name;
         this.age= age;
         this.type = type;
@@ -26,7 +28,7 @@ public class Animal {
         return age;
     }
 
-    public int getImage(){
-        return image;
+    public String getImage(){
+        return img;
     }
 }

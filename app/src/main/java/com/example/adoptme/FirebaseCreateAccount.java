@@ -87,8 +87,8 @@ public class FirebaseCreateAccount extends AppCompatActivity {
 
     public ArrayList<Animal> addTempLikedList(){
         ArrayList<Animal> animals = new ArrayList<>();
-        animals.add(new Animal("Eevee",R.drawable.eevee, 8, "Dog"));
-        animals.add(new Animal("Iron",R.drawable.iron, 3, "Dog"));
+//        animals.add(new Animal("Eevee",R.drawable.eevee, 8, "Dog"));
+//        animals.add(new Animal("Iron",R.drawable.iron, 3, "Dog"));
 
         return animals;
     }

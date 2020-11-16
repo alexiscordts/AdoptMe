@@ -31,7 +31,7 @@ public class FirebaseLogin extends AppCompatActivity {
         // Get current app user
         auth = FirebaseAuth.getInstance();
         if(auth.getCurrentUser() != null){
-            startActivity(new Intent(FirebaseLogin.this, ShelterView.class));
+            startActivity(new Intent(FirebaseLogin.this, SwipePage.class));
         }
 
         setContentView(R.layout.activity_firebase_login);
@@ -62,7 +62,7 @@ public class FirebaseLogin extends AppCompatActivity {
                     Toast.makeText(FirebaseLogin.this, "Authentication Failed", Toast.LENGTH_SHORT).show();
                 }else{
 //                    Intent intent = new Intent(FirebaseLogin.this, SwipePage.class);
-                    Intent intent = new Intent(FirebaseLogin.this, ShelterView.class);
+                    Intent intent = new Intent(FirebaseLogin.this, SwipePage.class);
                     startActivity(intent);
                     finish();
                 }
