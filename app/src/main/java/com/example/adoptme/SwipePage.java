@@ -121,6 +121,15 @@ public class SwipePage extends AppCompatActivity {
                 cardStackLayoutManager.setOverlayInterpolator(new LinearInterpolator());
                 cardStackView.setLayoutManager(cardStackLayoutManager);
 
+
+                //Get data from database...
+
+
+
+
+
+
+
                 cardStackAdapter = new CardStackAdapter(addTempList(), currentUser);
                 cardStackView.setAdapter(cardStackAdapter);
                 cardStackView.setItemAnimator(new DefaultItemAnimator());

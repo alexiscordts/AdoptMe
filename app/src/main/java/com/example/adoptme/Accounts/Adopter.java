@@ -7,7 +7,6 @@ import java.util.List;
 
 public class Adopter extends UserModel{
 
-
     private ArrayList<String> typeFilters;
     private ArrayList<Animal> likedAnimals;
     private ArrayList<Integer> ageFilter;

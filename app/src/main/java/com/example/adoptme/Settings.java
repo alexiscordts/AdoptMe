@@ -90,7 +90,7 @@ public class Settings extends AppCompatActivity implements View.OnClickListener 
             }
         });
 
-    switch_all = findViewById(R.id.switch_all);
+        switch_all = findViewById(R.id.switch_all);
 
         btnSave = findViewById(R.id.btnSave);
         btnSave.setOnClickListener((View.OnClickListener) this);

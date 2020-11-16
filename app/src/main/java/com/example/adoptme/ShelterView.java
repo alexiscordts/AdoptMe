@@ -15,6 +15,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -27,11 +28,15 @@ import com.example.adoptme.Accounts.Adopter;
 import com.example.adoptme.Accounts.Animal;
 import com.example.adoptme.Accounts.AnimalShelter;
 import com.example.adoptme.Adapters.SavedPetsAdapter;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -43,11 +48,8 @@ import java.util.UUID;
 public class ShelterView extends AppCompatActivity implements TextWatcher {
     private static final int REQUEST_IMAGE_CAPTURE = 1;
     private RecyclerView recyclerView;
-    private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
-    private AnimalShelter animalShelter;
     private View dialogView;
-    private ArrayList<Animal> mAnimals;
     FloatingActionButton fab;
     TextView tvShelterName, tvShelterPhone, tvShelterEmail;
     ImageView addNewAnimalImg;
@@ -61,15 +63,27 @@ public class ShelterView extends AppCompatActivity implements TextWatcher {
     private FirebaseStorage firebaseStorage;
     private StorageReference storageReference;
 
+    //Firebase database and adapter
+    private DatabaseReference ref;
+    private FirebaseRecyclerAdapter<Animal, SavedPetsAdapter.ViewHolder> firebaseRecyclerAdapter;
+
+    private FirebaseAuth auth;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shelter_view);
 
+        auth = FirebaseAuth.getInstance();
+        String uid = auth.getUid();
+
+
+
+
         firebaseStorage = FirebaseStorage.getInstance();
         storageReference = firebaseStorage.getReference();
 
-        tvShelterEmail = findViewById(R.id.tvShelterEmail);
         tvShelterName = findViewById(R.id.tvShelterName);
         tvShelterPhone = findViewById(R.id.tvShelterPhone);
 
@@ -83,16 +97,36 @@ public class ShelterView extends AppCompatActivity implements TextWatcher {
         //Get current user or if no user create a new one...
         //TODO : Get animal array from database
 
+        ref = FirebaseDatabase.getInstance().getReference();
+        Query query = ref.child("animals");
 
-        animalShelter = new AnimalShelter("arl", "525","", addList());
-        mAnimals = animalShelter.getAnimals();
+        FirebaseRecyclerOptions<Animal> firebaseRecyclerOptions = new FirebaseRecyclerOptions.Builder<Animal>()
+                .setQuery(query, Animal.class)
+                .build();
 
-        adapter = new SavedPetsAdapter(mAnimals);
 
-        recyclerView.setAdapter(adapter);
+        firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Animal, SavedPetsAdapter.ViewHolder>(firebaseRecyclerOptions) {
+            @Override
+            protected void onBindViewHolder(@NonNull SavedPetsAdapter.ViewHolder holder, int position, @NonNull Animal model) {
+                holder.setData(model);
+            }
 
-        tvShelterName.setText(animalShelter.getName());
-        tvShelterPhone.setText(animalShelter.getPhone());
+            @NonNull
+            @Override
+            public SavedPetsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.liked_pets_card,parent,false);
+                return new SavedPetsAdapter.ViewHolder(view);
+            }
+        };
+
+
+
+        recyclerView.setAdapter(firebaseRecyclerAdapter);
+
+        Query animalShelterQuery = ref.child("users").child(uid);
+
+        tvShelterName.setText("ARL");
+        tvShelterPhone.setText("525-532-5532");
 
         fab = findViewById(R.id.floatingActionButton);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -104,7 +138,20 @@ public class ShelterView extends AppCompatActivity implements TextWatcher {
 
 
     }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        firebaseRecyclerAdapter.startListening();
+    }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        if (firebaseRecyclerAdapter!= null) {
+            firebaseRecyclerAdapter.stopListening();
+        }
+    }
 
     private void showAddAnimalDialog(final int addAnimalPosition){
          dialogView = LayoutInflater.from(this)
@@ -150,24 +197,14 @@ public class ShelterView extends AppCompatActivity implements TextWatcher {
 
         final AlertDialog dialog = builder.show();
 
-
-//        if (editing) {
-//           Animal editAnimal = mAnimals.get(addAnimalPosition);
-//            mNameEdit.setText(editAnimal.getName());
-//            mNameEdit.setEnabled(false);
-//            mAgeEdit.setText(editAnimal.getAge());
-//            mAgeEdit.setEnabled(false);
-//            mTypeEdit.setText(editAnimal.getType());
-//        }
-
         dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(mEntryValid){
                     Animal newAnimal = new Animal(mNameEdit.getText().toString(),12 , Integer.parseInt(mAgeEdit.getText().toString()), mTypeEdit.getText().toString().toLowerCase());
 
-                    mAnimals.add(newAnimal);
-                    adapter.notifyDataSetChanged();
+//                    mAnimals.add(newAnimal);
+//                    adapter.notifyDataSetChanged();
 
 
 
@@ -263,9 +300,10 @@ public class ShelterView extends AppCompatActivity implements TextWatcher {
     public ArrayList<Animal> retrieveAnimals(){
         ArrayList<Animal> animals = new ArrayList<>();
 
-
-
-
+        animals.add(new Animal("Steve", R.drawable.kitten, 1, "Cat"));
+        animals.add(new Animal("Eevee", R.drawable.eevee, 8, "Dog"));
+        animals.add(new Animal("Bud", R.drawable.goldenretriever, 4, "Dog"));
+        animals.add(new Animal("Iron", R.drawable.iron, 3, "Dog"));
 
         return animals;
 
