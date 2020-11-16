@@ -1,9 +1,17 @@
 package com.example.adoptme.Accounts;
 
+import android.view.animation.AnimationUtils;
+
 public class Animal {
+
+
 
     private int image, age;
     private String name,type;
+
+    public Animal(){
+
+    }
 
     public Animal(String name,int image, int age, String type){
         this.image = image;

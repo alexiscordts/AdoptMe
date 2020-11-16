@@ -166,6 +166,7 @@ public class SwipePage extends AppCompatActivity {
 
     public ArrayList<Animal> addTempList() {
         ArrayList<Animal> animals = new ArrayList<>();
+
         animals.add(new Animal("Steve", R.drawable.kitten, 1, "Cat"));
         animals.add(new Animal("Eevee", R.drawable.eevee, 8, "Dog"));
         animals.add(new Animal("Bud", R.drawable.goldenretriever, 4, "Dog"));
