@@ -29,10 +29,10 @@ public class Adopter extends UserModel{
      * Modify the age filter of a user. Assume that youngest <= oldest.
      * @param youngest the youngest age wanted for a pet
      */
-
     public void changeAgeFilter(int youngest, int oldest){
         ageFilter.add(0, youngest);
         ageFilter.add(1, oldest);
+
     }
 
     public ArrayList<Integer> getAgeFilter(){
