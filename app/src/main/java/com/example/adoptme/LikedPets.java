@@ -41,7 +41,7 @@ public class LikedPets extends AppCompatActivity {
 
 
 
-            adapter = new SavedPetsAdapter(currentUser.getLikedAnimals());
+            adapter = new SavedPetsAdapter((ArrayList<Animal>) currentUser.getLikedAnimals());
 
 
 

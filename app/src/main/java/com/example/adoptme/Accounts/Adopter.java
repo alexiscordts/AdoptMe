@@ -1,6 +1,8 @@
 package com.example.adoptme.Accounts;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Adopter extends UserModel{
 
@@ -10,13 +12,15 @@ public class Adopter extends UserModel{
     /**
      * ageFilter stores the range of ages a user wants, where ageFilter[0] = youngest age wanted, and ageFilter[1] = oldest age wanted.
      */
-    private int[] ageFilter;
+    private ArrayList<Integer> ageFilter;
 
     public Adopter(String uid, String name, String phone, ArrayList<Animal> likedAnimals) {
         super(uid, name, phone, "adopter");
         typeFilters = new ArrayList<>();
-        this.likedAnimals = new ArrayList<>();
-        ageFilter = new int[]{0, 100};
+        this.likedAnimals = likedAnimals;
+        ageFilter = new ArrayList<Integer>();
+        ageFilter.add(0,0);
+        ageFilter.add(1, 100);
         this.setType("adopter");
     }
 
@@ -25,14 +29,13 @@ public class Adopter extends UserModel{
      * Modify the age filter of a user. Assume that youngest <= oldest.
      * @param youngest the youngest age wanted for a pet
      */
-    public void changeMinAge(int youngest){
-        ageFilter[0] = youngest;
-    }
-    public void changeMaxAge(int oldest){
-        ageFilter[1] = oldest;
+
+    public void changeAgeFilter(int youngest, int oldest){
+        ageFilter.add(0, youngest);
+        ageFilter.add(1, oldest);
     }
 
-    public int[] getAgeFilter(){
+    public ArrayList<Integer> getAgeFilter(){
         return ageFilter;
     }
 
